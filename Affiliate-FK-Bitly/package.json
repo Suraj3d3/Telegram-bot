@@ -1,0 +1,15 @@
+{
+  "name": "affiliate-fk-bitly",
+  "version": "1.0.0",
+  "description": "",
+  "main": "affiliateApp.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "suraj chaudhary",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "node-telegram-bot-api": "^0.51.0"
+  }
+}

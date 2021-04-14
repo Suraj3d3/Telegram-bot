@@ -1,0 +1,73 @@
+File name : validation.js
+===========================
+
+------------------------------------------------------------------------------------
+Code:
+        affiliateUrlValidation : function(aff_url){
+                    
+                    if(aff_url.indexOf('.') == -1){  
+                        return false;
+                    }
+
+Details:
+        A url must contain at least one dot('.') , and if it not there it means URL is not
+        valid. Hence returning false.
+
+--------------------------------------------------------------------------------------
+
+Code :
+        let breakedUrl = aff_url.split('.');
+        let serviceName = breakedUrl[1]; //Flipkart , Amazon
+
+Details: 
+        Sample URL: https://www.flipkart.com/peter-england-university-full-sleeve-solid-men-jacket/p/
+                    itmdcab2c65c6eed?pid=JCKFYYRQYZU8C5HG&lid=LSTJCKFYYRQYZU8C5HGBNKO4Q&marketplace=
+                    FLIPKART&sattr[]=size&pageUID=1612286630677&affid=uttamkuma2 
+
+        if we would break the above sample URL using dot('.) , It will create an Array with following values.
+        breakedUrl = [
+                        "https://www",
+                        "flipkart",
+                        "peter-england-university-full-sleeve-solid........"
+                     ]   
+
+        To find service name , we can check the value present in breakedUrl[1].
+
+        Logic 2 : Another logic to find service name could be to check for availability
+         of string 'flipkart' OR 'amazon' in URL using indexOf()        
+
+------------------------------------------------------------------------------------------------ 
+
+Code:
+        if(serviceName.toLowerCase() == 'flipkart') 
+        {
+            let indx1 = aff_url.indexOf("pid=");
+            let indx2 = aff_url.indexOf("&lid");
+                        
+            let PID = aff_url.slice(indx1+4,indx2); 
+            return ['flipkart',PID]; //DO NOT CHANGE ORDER OF ARRAY IN RETURN
+        }
+    
+Details : 
+
+            Eg :  itmdcab2c65c6eed?pid=JCKFYYRQYZU8C5HG&lid=LSTJCKFYYRQYZU8C5HGBNKO4Q
+                                   :::::::::::::::::::::
+
+            Logic for retriving pid from URL
+                find index of string "pid"   < let indx1 = aff_url.indexOf("pid="); >
+                find index of string "&lid"  < let indx2 = aff_url.indexOf("&lid"); >
+
+                as the string "pid=" contains 4 letters but the indexOf() method
+                will return index of first letter ('p') , so we have to add 4 in 
+                index value of "pid=" to get exact the value after string "PID="
+
+                Once done with this , we can return an array containing service name 
+                (i.e. flipkart or amazon) and the product ID (PID)
+
+                after receiving the returned value from affiliateUrlValidation() method
+                , we are retriving values from array , so it's important to maintain ORDER
+                of array.
+
+--------------------------------------------------------------------------------------------
+
+

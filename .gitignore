@@ -1,0 +1,6 @@
+node_modules/
+.env
+.backup
+jsrGuru_upload_automation/
+chatIDs.txt
+test/*

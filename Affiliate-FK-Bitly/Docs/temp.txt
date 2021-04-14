@@ -1,0 +1,12 @@
+Details to retrive from FK response
+===================================
+    title = prod.productBaseInfoV1.title
+    price = prod.productBaseInfoV1.flipkartSpecialPrice.amount
+
+Details to retrive from Bitly response
+======================================
+    created_at = res.created_at
+    short_link = res.link
+    long_link = res.long_url
+
+

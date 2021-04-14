@@ -1,0 +1,16 @@
+{
+  "name": "telegram-bot-test",
+  "version": "1.0.0",
+  "description": "testing telegram bot with node",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "suraj",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "node-cron": "^2.0.3",
+    "node-telegram-bot-api": "^0.50.0"
+  }
+}

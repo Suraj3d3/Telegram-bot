@@ -1,0 +1,97 @@
+File : index.js
+================
+
+------------------------------------------------------------------------------------------------------------
+Code : 
+    telegram.onText(/#help/gi,(message)=>{
+        
+Details :
+    * onText()  : builtin telegram method to capture all incoming messages to bot. 
+                  Atleast 2 parameters required -- 1) Regular expression to trigger on particular message
+                                                   2) callback method having access of return object 
+                                                      containing message,chatID,messageID,etc.
+
+    * /#help/gi :   Regular expression 
+                    /any_word/
+                    g represents global search
+                    i represents case insenstive
+
+------------------------------------------------------------------------------------------------------------
+                  
+FK Sample URL : https://www.flipkart.com/peter-england-university-full-sleeve-solid-men-jacket/p/itmdcab2c65c6eed?pid=JCKFYYRQYZU8C5HG&lid=LSTJCKFYYRQYZU8C5HGBNKO4Q&marketplace=FLIPKART&sattr[]=size&pageUID=1612286630677&affid=uttamkuma2 
+
+--------------------------------------------------------------------------------------------------------------------
+
+Code:
+      let affiliateUrl = breakedCommand[1]; 
+      let urlValStatus = validation.affiliateUrlValidation(affiliateUrl)
+
+
+Details: 
+        Eg : #affiliate https://www.jamshedpurguru.in 
+        second value of array (breakedCommand[1]) will contain URL passed by user.
+        sending URL to affiliateUrlValidation() method present in validation.js file
+
+--------------------------------------------------------------------------------------
+
+Code :
+         async function waitForFkAPIResponse(){
+                    prodDetails = await flipkartAPI.getProductDetails(PID); 
+
+Details : 
+            fetching data from flipkart API may take some time. Hence keeping 
+            the whole tasks in async block which depends on product details from
+            flipkart API.
+               
+            Keeping flipkartAPI.getProductDetails() as await because code below this 
+            method should wait for execution of getProductDetails() method.
+
+---------------------------------------------------------------------------------------
+
+Code :
+         let prodCategory = prodDetails.productBaseInfoV1.categoryPath;
+                      
+                         let categ = prodCategory.replace(/[&\/\\#, +()$~%.'":*?<{}]/g, ' ')  
+                        let breakedCategory = categ.split('>')
+
+Details:
+        Sample categotyPath : "Clothing & Accessories > Jackets > Men Jackets > Winterwear"
+        
+        let categ = prodCategory.replace(/[&\/\\#, +()$~%.'":*?<{}]/g, ' ') 
+                 
+                 removing special characters as bitly tags does not support any special characters.
+                 Keeping only '>' as we can use '>' to split whole category string into array of
+                 category and sub-category. Refer to the below diagram for better understanding.
+
+        prodCategory = "Clothing & Accessories > Jackets > Men Jackets > Winterwear"
+                                []
+                                [] let categ = prodCategory.replace(/[&\/\\#, +()$~%.'":*?<{}]/g, ' ') 
+                                []
+                               \\//
+                                \/
+        categ =  Clothing Accessories > Jackets > Men Jackets > Winterwear
+                                []
+                                []  let breakedCategory = categ.split('>')
+                                []
+                               \\//
+                                \/
+        breakedCategory = ["Clothing Accessories","Jackets","Men Jackets","Winterwear"]
+
+
+-----------------------------------------------------------------------------------------------------------
+
+Code : 
+     let bitlyResponse = await bitlyAPI.postProductDetails(prodTitle,prodAmount,affiliateUrl,breakedCategory);
+
+Details:
+        Sending all details to postProductDetails() present in bitlyAPI.js file.
+        this method will hit bitly API and post all data passed in method to bitly
+        and get a json in response which contains status code , short link , etc.
+
+        keeping method as await as rest of the tasks are depended on bitly response object.
+
+------------------------------------------------------------------------------------------------------------
+         
+
+
+    

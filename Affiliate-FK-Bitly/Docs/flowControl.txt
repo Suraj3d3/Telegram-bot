@@ -1,0 +1,11 @@
+all affiliate services such as hitting FK and Bitly API and getting
+response , working on response is wrapped in under  affiliateApp.js
+file and finally we are exporting that function.
+                []
+                []
+                []
+               \\//
+                \/
+importing  affiliateApp.js in index.js file and calling method exported 
+from affiliateApp.js ( i.e. affiliateServices() )
+                
